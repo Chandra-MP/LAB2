@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/vd.css">
+    <script src="./javascript/vd.js"></script>
+    <title>Video Player | Geolocation</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="heading">
+                MPHC | HIGH SPEED CONTENT DELIVERY NETWORK
+            </h1>
+        </div>
+        <div class="mainbody">
+            <h3 class="video"> Play a video! </h3>
+            <div class="video_player">
+                <video width="400" controls>
+                    <source src="vid.mp4" type="video/mp4">
+                    <source src="vid.ogg" type="video/ogg">
+                    Your Browser Does not support HTML
+                </video>
+            </div>
+            <br>
+            <br>
+            <h1>Find your Current location</h1>
+            <button onclick="getlocation()">Click me</button>
+            <div id="location"></div>
+            <script>
+                var x = document.getElementById("location");
+                function getlocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition)
+                    }
+                    else {
+                        alert("Sorry! your browser is not supporting")
+                    }
+                }
+
+                function showPosition(position) {
+                    var x = "Your current location is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+                    document.getElementById("location").innerHTML = x;
+                }  
+            </script>
+            <div class="canvas">
+                <p class="draw_text">
+                    Wanna Draw Something?? USE JAVASCRIPT !!
+                </p>
+                <canvas id="myCanvas" width="200" height="100" style="background-color: white;"></canvas>
+                <script>
+                    let c = document.getElementById("myCanvas");
+                    let ctx = c.getContext("2d");
+                    ctx.font = "30px Arial"
+                    ctx.strokeText("Hello Man!",10, 50)
+                    ctx.stroke();
+                </script>
+            </div>
+            <div class="inputs">
+                <p>
+                    If You enjoyed, Rate it out of 10, I'll thank You personally!
+                </p>
+                <label for="Rate"> Choose a Rating you would like to give</label>
+                <br />
+                <input type="range" name="rate" id="rate" min="0" max="10" step="1" value="10" />
+                <output class="rateput" for="rate"></output>
+
+                <script>
+                    const rate = document.querySelector("#rate");
+                    const output = document.querySelector(".rateput");
+                    output.textContent = rate.value;
+                    rate.addEventListener('change', ()=>{
+                        output.textContent = rate.value;
+                    });
+                </script>
+
+            </div>
+            <div class="color">
+                <p>
+                    Okay, Before Leaving please tell us your favourite color -
+                </p>
+                <div class="choose-color">
+                    <input type="color" name="color" id="color" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
